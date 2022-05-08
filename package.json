@@ -2,7 +2,7 @@
   "name": "carburant_api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MD-anouch/carburant_api_mongodb#readme",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "express": "^4.18.1",
     "mongodb": "^4.5.0",
     "nodemon": "^2.0.16"
