@@ -1,0 +1,24 @@
+{
+  "name": "carburant_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MD-anouch/carburant_api_mongodb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MD-anouch/carburant_api_mongodb/issues"
+  },
+  "homepage": "https://github.com/MD-anouch/carburant_api_mongodb#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongodb": "^4.5.0",
+    "nodemon": "^2.0.16"
+  }
+}
