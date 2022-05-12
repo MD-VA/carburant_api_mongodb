@@ -52,3 +52,15 @@ app.get('/all', function(req, res) {
     db.close();
     });
 });
+
+
+app.get('/search', function(req, res) {
+  let params = req.body;
+  // res.send(params);
+  db.collection("carb2").find(params).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+    db.close();
+    });
+});
