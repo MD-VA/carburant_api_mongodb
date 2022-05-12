@@ -42,3 +42,13 @@ app.post('/', function(req, res) {
     });
 // p
 });
+
+app.get('/all', function(req, res) {
+  let data;
+  db.collection("carb2").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    res.send(result);
+    db.close();
+    });
+});
