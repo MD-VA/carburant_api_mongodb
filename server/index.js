@@ -49,7 +49,7 @@ app.get('/all', function(req, res) {
     if (err) throw err;
     console.log(result);
     res.send(result);
-    db.close();
+    // db.close();
     });
 });
 
@@ -61,6 +61,6 @@ app.get('/search', function(req, res) {
     if (err) throw err;
     console.log(result);
     res.send(result);
-    db.close();
+    // db.close();
     });
 });
