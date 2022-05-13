@@ -5,6 +5,7 @@ const fs = require('fs');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const { query } = require('express');
 const MongoClient = require('mongodb').MongoClient
 let db;
 //Establish Connection
@@ -21,6 +22,13 @@ MongoClient.connect('mongodb://localhost:27017', function (err, client) {
  });
 
 app.use(bodyParser.json())
+// Enable CORS
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+});
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/data/data.json'));
@@ -56,6 +64,10 @@ app.get('/all', function(req, res) {
 
 app.get('/search', function(req, res) {
   let params = req.body;
+
+  let query = {
+    ...params,
+  }
   // res.send(params);
   db.collection("carb2").find(params).toArray(function(err, result) {
     if (err) throw err;
@@ -65,13 +77,13 @@ app.get('/search', function(req, res) {
     });
 });
 
-app.get('/createDatabase', function(req, res) {
+app.post('/createDatabase', function(req, res) {
   const url = "mongodb://localhost:27017/carburant";
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
     db.close();
   });
-});
+}); 
 
 
