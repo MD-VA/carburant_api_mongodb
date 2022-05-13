@@ -35,12 +35,14 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-    fs.readFile(path.join(__dirname, '/data/data.json'), 'utf8', function (err, data) {
+  const json = path.join(__dirname, '/data/data.json');
+  const data = JSON.parse( JSON.stringify( json ) )
+    fs.readFile(json, 'utf8', function (err, data) {
         if (err) throw err;
         console.log(data);
         var json = JSON.parse(data);
     
-        db.collection('carb2').insert(json, function (err, result) {
+        db.collection('carb5').insert(json, function (err, result) {
             if (err)
                res.send('Error');
             else
@@ -68,8 +70,11 @@ app.get('/search', function(req, res) {
   let query = {
     ...params,
   }
+
+  db.collection("carb2").createIndex({"adresse":"text","ville":"text"});
   // res.send(params);
-  db.collection("carb2").find(params).toArray(function(err, result) {
+
+  db.collection("carb2").find({$text: {$search: query.search}}).toArray(function(err, result) {
     if (err) throw err;
     console.log(result);
     res.send(result);
