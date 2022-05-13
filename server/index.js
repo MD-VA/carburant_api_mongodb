@@ -65,7 +65,7 @@ app.get('/all', function(req, res) {
 
 
 app.get('/search', function(req, res) {
-  let params = req.body;
+  let params = req.query;
 
   let query = {
     ...params,
